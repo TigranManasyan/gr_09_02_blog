@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest'])->group(function() {
@@ -16,4 +17,15 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/home', function() {
         return view("dash.index");
     })->name("home");
+
+
+    Route::prefix("products")->group(function() {
+        Route::get("/", [ProductController::class, "index"])->name("product-list");
+        Route::get("/new", [ProductController::class, "create"])->name("product-create");
+        Route::post("/new/store", [ProductController::class, "store"])->name("product-store");
+    });
+
 });
+
+
+Route::get('/del/{id}', [ProductController::class, "delete"]);
