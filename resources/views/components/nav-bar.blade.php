@@ -7,11 +7,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link {{ (Request::is("home") ? 'active' : '') }}" aria-current="page" href="{{route("home")}}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
+{{--                @if(Auth::user()->role_id == 1)--}}
+                    <li class="nav-item">
+                        <a class="nav-link {{ (Request::is("posts") ? 'active' : '') }}" href="{{ route("posts.index") }}">Posts</a>
+                    </li>
+{{--                @endif--}}
 
             </ul>
             <div class="nav-item dropdown">

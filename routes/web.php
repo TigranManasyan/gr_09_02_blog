@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,10 @@ Route::middleware(['auth'])->group(function() {
         Route::post("/new/store", [ProductController::class, "store"])->name("product-store");
     });
 
+    Route::resource("posts",PostController::class);
+
 });
 
 
 Route::get('/del/{id}', [ProductController::class, "delete"]);
+
