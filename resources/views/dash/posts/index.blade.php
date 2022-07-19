@@ -16,7 +16,7 @@
             <div class="card-body">
                 <h2 class="card-title">{{ $post['subject'] }}</h2>
                 @if(!empty($post['image']))
-                    <img src="{{ asset("assets/uploads/post_images/" . $post['image'] ) }}" >
+                    <img style="width:200px; height:160px;" src="{{ asset("assets/uploads/post_images/" . $post['image'] ) }}" >
                 @endif
 
                 <a href="{{route("posts.show",  $post)}}">Details</a>

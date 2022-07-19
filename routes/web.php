@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TestMailController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest'])->group(function() {
@@ -26,8 +27,12 @@ Route::middleware(['auth'])->group(function() {
         Route::post("/new/store", [ProductController::class, "store"])->name("product-store");
     });
 
-    Route::resource("posts",PostController::class);
-
+    Route::middleware(['isAdmin'])->resource("posts",PostController::class);
+    Route::get("/test/mail", [TestMailController::class, "index"])->name("test-mail");
+    Route::get("/post/mail",function () {
+        return view("test_mail.index");
+    })->name("post-mail");
+    Route::post("/test/mail", [TestMailController::class, "post_send_mail"])->name("post-mail-store");
 });
 
 

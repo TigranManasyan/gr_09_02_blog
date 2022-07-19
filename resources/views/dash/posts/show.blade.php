@@ -13,6 +13,11 @@
                     <h2 class="card-title">{{ $one_post['author'] }}</h2>
                     <p class="card-text">Created At` {{ $one_post['created_at'] }}</p>
                     <a href="{{route("posts.edit", $one_post['id'])}}" class="btn btn-success">Edit</a>
+                    <form action="{{ route("posts.destroy", $one_post['id']) }}" method="post">
+                        @csrf
+                        @method("delete")
+                        <button type="submit" class="btn  btn-danger">Delete</button>
+                    </form>
                 </div>
             </div>
     </div>

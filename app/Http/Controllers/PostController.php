@@ -112,7 +112,7 @@ class PostController extends Controller
             ->where("posts.id", "=", $post['id'])
             ->get();
         $one_post = json_decode($one_post, true)[0];
-        return view("dash.posts.edit", ["one_post" => $one_post]);
+        return view("dash.posts.edit", ["post" => $one_post]);
     }
 
     /**
@@ -124,7 +124,14 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $data = [
+            'subject' => $request['subject'],
+            'content' => $request['content'],
+        ];
+        $update = $post->update($data);
+        if($update) {
+            return redirect()->route("posts.index");
+        }
     }
 
     /**
@@ -135,6 +142,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $delete = $post->delete();
+        if($delete) {
+            return redirect()->route("posts.index");
+        }
     }
 }
