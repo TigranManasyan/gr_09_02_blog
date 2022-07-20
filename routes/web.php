@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TestMailController;
@@ -33,6 +34,15 @@ Route::middleware(['auth'])->group(function() {
         return view("test_mail.index");
     })->name("post-mail");
     Route::post("/test/mail", [TestMailController::class, "post_send_mail"])->name("post-mail-store");
+
+
+
+
+    //Categories
+
+    Route::get("/categories/create", [CategoryController::class, "create"])->name("create-category");
+    Route::post("/categories/store", [CategoryController::class, "store"])->name("store-category");
+    Route::post("/categories/update", [CategoryController::class, "update"])->name("update-category");
 });
 
 

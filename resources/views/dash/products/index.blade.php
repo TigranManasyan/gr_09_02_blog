@@ -21,7 +21,7 @@
                         @foreach($products as $product)
                             <tr>
                                 <td>{{ $product['Product'] }}</td>
-                                <td>{{ $product['Category'] }}</td>
+                                <td>{{ $product['CategoryOld'] }}</td>
                                 <td>{{ $product['CreatedBy'] }}</td>
                                 <td>
                                     <a href="">More</a>

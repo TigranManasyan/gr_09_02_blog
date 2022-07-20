@@ -17,7 +17,7 @@ class CategorySeeder extends Seeder
         for($i = 1; $i <= 60; $i++) {
             DB::table("categories")->insert(
                 [
-                    'name' => "Category N: $i"
+                    'name' => "CategoryOld N: $i"
                 ]
             );
         }

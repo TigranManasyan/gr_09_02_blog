@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\CategoryOld;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +14,7 @@ class ProductController extends Controller
         $products = DB::table("products")
             ->join("categories", "products.category_id", "=", "categories.id")
             ->join("users", "products.user_id", "=", "users.id")
-            ->select("products.name as Product", "categories.name as Category", "users.name as CreatedBy")
+            ->select("products.name as Product", "categories.name as CategoryOld", "users.name as CreatedBy")
 //            ->where("products.category_id", "=", 60)
             ->get();
 
@@ -26,7 +26,7 @@ class ProductController extends Controller
     }
 
     public function create() {
-        return view("dash.products.create", ["categories" => Category::get()]);
+        return view("dash.products.create", ["categories" => CategoryOld::get()]);
     }
 
     public function store(Request $request) {
@@ -45,7 +45,7 @@ class ProductController extends Controller
     }
 
     public function delete($id) {
-        $category = Category::find($id);
+        $category = CategoryOld::find($id);
         $category->delete();
     }
 }
